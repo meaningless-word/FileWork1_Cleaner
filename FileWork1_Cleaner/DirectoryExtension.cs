@@ -10,6 +10,7 @@ namespace FileWork1_Cleaner
         public static string DeepView(DirectoryInfo di, int i)
         {
             string result = "";
+            freshItemsCount = 0;
 
             // обход каталогов
             DirectoryInfo[] dirs = di.GetDirectories();
