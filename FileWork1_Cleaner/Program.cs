@@ -10,7 +10,12 @@ namespace FileWork1_Cleaner
     {
         static void Main(string[] args)
         {
-            Observ watchIt = new Observ("Testing", 5);
+            Console.WriteLine("Необходимо указать путь к рабочей папке.");
+            Console.WriteLine("При вводе пустой строки будет исползьоваться папка Testing на рабочем столе");
+            Console.Write(": ");
+            string workPath = Console.ReadLine();
+
+            Observ watchIt = new Observ(workPath, 5);
 
             watchIt.WriteInfo();
         }

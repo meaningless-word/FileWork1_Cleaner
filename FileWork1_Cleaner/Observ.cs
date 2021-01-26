@@ -10,15 +10,20 @@ namespace FileWork1_Cleaner
     public class Observ
     {
         private string fullPath;
-        private string folderOnDesktop;
         public int refreshInterval { get; set; }
         public string path 
         { 
             get { return fullPath; }
             set 
             {
-                folderOnDesktop = value;
-                fullPath = Environment.GetFolderPath(SpecialFolder.Desktop) + "\\" + value;
+                if (value.Length == 0)
+				{
+                    fullPath = Environment.GetFolderPath(SpecialFolder.Desktop) + "\\Testing";
+                }
+				else
+				{
+                    fullPath = value;
+				}
             } 
         }
 
@@ -39,14 +44,19 @@ namespace FileWork1_Cleaner
             if (Directory.Exists(path))
             {
                 DirectoryInfo d = new DirectoryInfo(fullPath);
-                Console.WriteLine(DirectoryExtension.DeepView(d, refreshInterval));
-
-
-
+                Console.WriteLine("До зачистки...");
+                Console.WriteLine(new String('=', 100));
+                DirectoryExtension.DeepView(d, refreshInterval);
+                Console.WriteLine("А теперь зачистка...");
+                Console.ReadKey();
+                DirectoryExtension.DeepClean(d, refreshInterval);
+                Console.WriteLine("После зачистки...");
+                Console.WriteLine(new String('=', 100));
+                DirectoryExtension.DeepView(d, refreshInterval);
             }
             else
             {
-                Console.WriteLine("Папки {0} нет на рабочем столе", folderOnDesktop);
+                Console.WriteLine("Папка {0} не обнаружена", fullPath);
             }
         }
 
