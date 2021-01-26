@@ -43,15 +43,17 @@ namespace FileWork1_Cleaner
         {
             if (Directory.Exists(path))
             {
+                string barrier = new String('=', 20);
                 DirectoryInfo d = new DirectoryInfo(fullPath);
-                Console.WriteLine("До зачистки...");
-                Console.WriteLine(new String('=', 100));
+                Console.WriteLine(barrier + " До зачистки... " + barrier);
                 DirectoryExtension.DeepView(d, refreshInterval);
-                Console.WriteLine("А теперь зачистка...");
+                Console.WriteLine();
+                Console.WriteLine(barrier + " А теперь зачистка... " + barrier);
                 Console.ReadKey();
                 DirectoryExtension.DeepClean(d, refreshInterval);
-                Console.WriteLine("После зачистки...");
-                Console.WriteLine(new String('=', 100));
+                Console.ReadKey();
+                Console.WriteLine();
+                Console.WriteLine(barrier + " После зачистки... " + barrier);
                 DirectoryExtension.DeepView(d, refreshInterval);
             }
             else
